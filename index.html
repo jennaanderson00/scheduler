@@ -28,10 +28,51 @@
       <p class="lead">A simple calendar app for scheduling your work day</p>
       <p id="currentDay" class="lead"></p>
     </header>
+    <div id="event-creation">
+      <form id="event-header">
+        <label for="event-name">New Event</label><br>
+        <input type="text" id="event-name" name="event-name"><br>
+      </form>
+      <div id="main-event-content">
+        <div id="type-dropdown" class="dropdown">
+          <button class="dropbtn">Event Type</button>
+          <div class="dropdown-content">
+          <!--saved event types from localStorage go here-->  
+        </div>
+        </div>
+        <!--add time selector here-->
+        <div id="icon">
+        <!--icons linked to saved event types from localStorage go here-->
+        </div>
+      </div>
+      <div id="event-checkboxes">
+        <div id="important-box">
+          <input type="checkbox" id="important" name="important" value="important-event">
+          <label for="important">Important</label><br>
+        </div>
+        <div id="repeating-event-options">
+          <div id="repeating-box">
+            <input type="checkbox" id="repeating" name="repeating" value="repeating-event">
+            <label for="repeating">Repeating Event</label><br>
+          </div>
+          <div id="repeating-dropdown" class="dropdown">
+            <button class="dropbtn">Frequency of Event</button>
+            <div class="dropdown-content">
+              <!--add frequency options here-->
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="event-notes">
+        <form id="notes-input">
+          <label for="notes-input-form">Notes</label><br>
+          <input type="text" id="notes-input-form" name="notes-input-form"><br>
+        </form>
+      </div>
+    </div>
     <div class="container">
       <!-- Timeblocks go here -->
     </div>
-
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
   </body>
