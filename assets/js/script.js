@@ -24,6 +24,7 @@
 var timeBlocks = [];
 
 $(function() {
+    // placing retrieve here causes currHour to run twice
     $('#event-creation').css("display", "none");
     // Format todays date now
     var now = moment().format( "MM-DD-YYYY");
@@ -36,18 +37,20 @@ $(function() {
         // Check if i (time/hour) is less than, current or after current hour
         var timeBlockObj;
         if (i < currHour) {
-            timeBlockObj = {startTime: i, content: '', color: 'grey'};
+            timeBlockObj = {icon: '', startTime: i, content: ''};
+            // change background color
         } else if (i == currHour) {
-            timeBlockObj = {startTime: i, content: '', color: 'green'};
+            timeBlockObj = {icon: '', startTime: i, content: ''};
         } else {
-            timeBlockObj = {startTime: i, content: '', color: 'red'};
+            timeBlockObj = {icon: '', startTime: i, content: ''};
         }
         timeBlocks.push(timeBlockObj);
     }
     console.log(timeBlocks);
 
-    // Loop through timeBlocks and display / load into dom the content 
+    // Loop through timeBlocks and display / load the content into the dom 
     for (i = 0; i < timeBlocks.length; i++) {
+        var timeBlockIcons = $('<div class="icon"></div>')
         var timeBlockElement = $('<div></div>');
         var timeBlockStartTime = $('<p></p>');
         var timeBlockContent = $('<div></div>');
@@ -64,8 +67,41 @@ $(function() {
         timeBlockElement.append(timeBlockStartTime, timeBlockContent, timeBlockColor);
         $('#time-blocks').append(timeBlockElement);
     }
+    // icons
+    var icon9 = $('<i class="fa-solid fa-clock-nine"></i>');
+    var icon10 = $('<i class="fa-solid fa-clock-ten"></i>');
+    var icon11 = $('<i class="fa-solid fa-clock-eleven"></i>');
+    var icon12 = $('<i class="fa-solid fa-clock-twelve"></i>')
+    var icon1 = $('<i class="fa-solid fa-clock-one"></i>')
+    var icon2 = $('<i class="fa-solid fa-clock-two"></i>')
+    var icon3 = $('<i class="fa-solid fa-clock-three"></i>')
+    var icon4 = $('<i class="fa-solid fa-clock-four"></i>')
+    var icon5 = $('<i class="fa-solid fa-clock-five"></i>')
 
-    save();
+    icons = [
+        {iconObject: icon9},
+        {iconObject: icon10},
+        {iconObject: icon11},
+        {iconObject: icon12},
+        {iconObject: icon1},
+        {iconObject: icon2},
+        {iconObject: icon3},
+        {iconObject: icon4},
+        {iconObject: icon5}
+    ]
+
+    // add icons
+    for (i = 9; i < 18; i++) {
+        timeBlockIcons.html(icons.iconObject++)
+    }
+
+    // save input on enter keypress event
+    $(document).on('keypress', function(e) {
+        if(e.which == 13) {
+            save();
+        }
+    });
+
     retrieve();
     print();
 })
